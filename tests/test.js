@@ -26,4 +26,17 @@ describe("Library Management System", () => {
     library.borrow("1");
     expect(() => library.borrow("1")).toThrow("Book already borrowed");
   });
+  
+  test("Returning book", () => {
+    library.addBook("1", "Textbook1", "reva buche", 2020);
+    library.borrow("1");
+    library.returnB("1");
+    const temp3 = library.available();
+    expect(temp3.length).toBe(1);
+  });
+
+  test("Returning a nonborrowed book", () => {
+    library.addBook("1", "Textbook1", "reva buche", 2020);
+    expect(() => library.returnB("100")).toThrow("Book not present");
+  });
 });
